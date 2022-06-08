@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     },
 
     boxResult:{
-        padding: 30,
+        padding: 10,
 
     },
 
