@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 
 export default function ResultCalculation(props){
 
-    const {capital, intereses, meses, total, errorMessage} = props;
+    const {capital, intereses, meses, total, nombre, errorMessage} = props;
 
     return (
        
@@ -11,8 +11,12 @@ export default function ResultCalculation(props){
             {total && (
                 <View style={styles.boxResult}>
                     <Text style={styles.tittle}>RESUMEN</Text>
-                    <DataResult tittle="Cantidad soliciitada:" value={`${capital} $`}/>
-                    <DataResult tittle="Cantidad soliciitada:" value={capital}/>
+                    <DataResult tittle="Nombre del cliente:" value={`${nombre}`}/>
+                    <DataResult tittle="Cantidad soliciitada:" value={`$ ${capital}`}/>
+                    <DataResult tittle="Intereses:" value={`${intereses} %`}/>
+                    <DataResult tittle="Cantidad soliciitada:" value={`${meses} meses`}/>
+                    <DataResult tittle="Cuota mensual:" value={`$ ${total.monthyFee}`}/>
+                    <DataResult tittle="Valor total a pagar:" value={`$ ${total.totalPayable}`}/>
                 </View>
             )}
             <View>
@@ -25,7 +29,7 @@ export default function ResultCalculation(props){
 
 }
 
-function DataResult(){
+function DataResult(props){
     const {tittle, value} = props;
 
     return(

@@ -4,13 +4,13 @@ import {Picker} from '@react-native-picker/picker'
 import colors from "../utils/colors";
 
 export default function Form(props){
-    const {setCapital, setIntereses, setMeses} = props;
+    const {setCapital, setIntereses, setMeses, setNombre} = props;
 
     return(
         <View style={styles.viewForm}>
             <View styles={styles.viewInput}>
                 <TextInput 
-                    placeholder="Cantidad a pedir"
+                    placeholder="Valor solicitado"
                     keyboardType="numeric"
                     style={styles.input}
                     onChange={(e) => setCapital(e.nativeEvent.text)}
@@ -20,6 +20,11 @@ export default function Form(props){
                     keyboardType="numeric"
                     style={[styles.input, styles.inputPercentage]}
                     onChange={(e) => setIntereses(e.nativeEvent.text)}
+                />
+                <TextInput
+                    placeholder="Ingrese su nombre"
+                    style={styles.input}
+                    onChange={(e) => setNombre(e.nativeEvent.text)}
                 />
             </View>
             <Picker 
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 50,
         backgroundColor: colors.PRIMARY_COLOR_DARK,
         borderRadius: 30,
-        height: 180,
+        height: 240,
         justifyContent: 'center',
     },
 
@@ -61,7 +66,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: colors.PRIMARY_COLOR,
         borderRadius: 5,
-        width: '60%',
+        width: '100%',
         marginRight: 5,
         marginLeft: -5,
         marginBottom: 10,
@@ -70,8 +75,8 @@ const styles = StyleSheet.create({
     },
 
     inputPercentage: {
-        width: '40%',
-        marginLeft: 5,
+        width: '100%',
+        marginLeft: -5,
     }
 })
 

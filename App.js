@@ -8,6 +8,7 @@ import colors from './src/utils/colors';
 
 export default function App(){
   
+  const [nombre, setNombre] = useState(null);
   const [capital, setCapital] = useState(null);
   const [intereses, setIntereses] = useState(null);
   const [meses, setMeses] = useState(null);
@@ -15,7 +16,7 @@ export default function App(){
   const [errorMessage, setErrorMenssage] = useState('');
 
   useEffect(()=>{
-    if(capital && intereses && meses){
+    if(capital && intereses && meses && nombre){
       calculate();
     }else{
       reset();
@@ -29,7 +30,10 @@ export default function App(){
         setErrorMenssage("Ingresa los intereses");
       }else if(!meses){
         setErrorMenssage("Ingresa el numero de meses");
-      }else{
+      }else if(!nombre){
+        setErrorMenssage("Ingrese el nombre del cliente");
+      }
+      else{
         const i = intereses / 100;
         const fee = capital / ((1 - Math.pow(i + 1, -meses)) / i);
         setTotal({
@@ -52,12 +56,14 @@ export default function App(){
           <Text style={styles.tittleApp}>Simulador de prestamos</Text>
           <Form 
             setCapital={setCapital} 
-            setIntereses={setIntereses} 
+            setIntereses={setIntereses}
+            setNombre={setNombre} 
             setMeses={setMeses}
           />
         </SafeAreaView>
 
         <ResultCalculation 
+        nombre={nombre}
         capital={capital}
         intereses={intereses}
         meses={meses}
